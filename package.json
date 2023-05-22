@@ -1,0 +1,26 @@
+{
+  "name": "develop-util",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "dayjs": "^1.11.7",
+    "element-plus": "^2.3.3",
+    "elui-china-area-dht": "^2.0.0",
+    "pinia": "^2.0.32",
+    "use-element-plus-theme": "^0.0.3",
+    "v-distpicker": "^2.1.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vue3-mini-weather": "^0.1.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.1.4"
+  }
+}
