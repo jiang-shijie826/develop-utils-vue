@@ -1,7 +1,8 @@
 <script setup  lang="ts">
 import { reactive, onMounted } from "vue";
 import { ElMessage } from 'element-plus'
-import { sqlBeauty } from "../../http/data/index.js"
+import { sqlRequest } from "../../http/data/index.js"
+import useClipboard from 'vue-clipboard3'
 
 const data = reactive({
   visible: false,
@@ -21,39 +22,41 @@ const add = (): void => {
     return;
   };
 
-  sqlBeauty(data).then(res => {
+  sqlRequest(data).then(res => {
     data.returnSql = res.returnSql;
+    console.log("sql", data.returnSql);
+    //判断是否显示结果框
+    if (data.returnSql != null) {
+      data.isShow = true
+      //复制替换过的sql到剪贴板
+      touchCopy()
+    }
   }).catch(err => {
     console.log(err)
   })
+};
 
-  console.log(data.returnSql)
-
-  //判断是否显示结果框
-  if (data.returnSql != null) {
-    data.isShow = true
+// 点击复制
+function touchCopy() {
+  // 调用
+  copy(data.returnSql)
+  ElMessage.success('SQL语句复制成功')
+}
+// 使用插件
+const { toClipboard } = useClipboard()
+const copy = async (msg) => {
+  try {
+    // 复制
+    await toClipboard(msg)
+    // 复制成功
+  } catch (e) {
+    // 复制失败
   }
-  var cInput = document.createElement("input");
-  
-  cInput.value = data.returnSql;
-  document.body.appendChild(cInput);
-  cInput.select(); // 选取文本框内容
-  // 执行浏览器复制命令
-  // 复制命令会将当前选中的内容复制到剪切板中（这里就是创建的input标签）
-  // Input要在正常的编辑状态下原生复制方法才会生效
-  document.execCommand("copy");
-  ElMessage.success('SQL语句复制成功')
-  // 复制成功后再将构造的标签 移除
-  document.body.removeChild(cInput);
-};
-
-const onCopy = (): void => {
-  ElMessage.success('SQL语句复制成功')
-};
+}
 
 const deleteData = (): void => {
   data.sqlStatement = '',
-  data.sqlPara = ''
+    data.sqlPara = ''
   data.returnSql = ''
   data.isShow = false
 };
@@ -86,7 +89,7 @@ const deleteData = (): void => {
           <el-input v-model="data.sqlPara" class="textarea" placeholder="请输入参数"></el-input>
           <el-divider></el-divider>
           <el-button class="sqlbutton" type="primary" round @click="add()">开始替换SQL语句</el-button>
-          <el-button type="warning" round v-if="data.isShow" v-clipboard:copy="data.returnSql" v-on:click="onCopy()"
+          <el-button type="warning" round v-if="data.isShow" v-clipboard:copy="data.returnSql" v-on:click="touchCopy()"
             class="copy">复制
           </el-button>
           <el-input v-if="data.isShow" type="textarea" class="textarea" :rows="5" v-model="data.returnSql">

@@ -26,11 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick } from "vue";
+import { ref, watch, nextTick, reactive } from "vue";
 import { showStore } from "../../stores/show";
 import { ElMessage } from "element-plus";
 import type { TabsPaneContext } from 'element-plus'
 import Weather from "../../views/weather/Weather.vue";
+import { querySearchNavigation } from "../../http/data/index.js"
+
 
 const store = showStore();
 const activeName = ref('first')
@@ -78,57 +80,19 @@ const EnterSearch = (): void => {
 };
 
 // 常用标签
-const boxes: {
-    text: string;
-    src: string;
-    img: string;
-}[] = [
-        {
-            text: "百度",
-            src: "https://www.baidu.com",
-            img: "1.png",
-        },
-        {
-            text: "bilibili",
-            src: "https://www.bilibili.com/",
-            img: "2.png",
-        },
-        {
-            text: "Github",
-            src: "https://github.com/",
-            img: "3.png",
-        },
-        {
-            text: "qq邮箱",
-            src: "https://mail.qq.com/",
-            img: "4.png",
-        },
-        {
-            text: "百度翻译",
-            src: "https://fanyi.baidu.com/",
-            img: "5.png",
-        },
-        {
-            text: "知乎",
-            src: "https://www.zhihu.com/",
-            img: "6.png",
-        },
-        {
-            text: "图标库",
-            src: "https://www.iconfont.cn/",
-            img: "7.png",
-        },
-        {
-            text: "Element",
-            src: "https://element-plus.org/zh-CN/",
-            img: "8.png",
-        },
-        {
-            text: "",
-            src: "",
-            img: "9.png",
-        },
-    ];
+const boxes:any = reactive([]);
+
+const count = ref(9);
+
+querySearchNavigation(count.value).then( (res: any) => {
+    if (res.length > 0) {
+        res.forEach((item:any) => {
+            boxes.push(item);
+        });
+    }
+}).catch( (err: any) => {
+    console.log(err)
+})
 
 const value = ref('网络搜索')
 const options = [
@@ -258,6 +222,7 @@ const changeMenu = (event: string): void => {
     border-radius: 10px;
     margin: 20px;
     transition: background-color 0.1s;
+    top: 0px;
 }
 
 .box:hover {

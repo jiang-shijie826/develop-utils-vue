@@ -7,28 +7,28 @@
     </template>
     <el-row>
       <el-col v-for="(item) in alwaysList" :key="item" :span="4">
-        <el-card class="card" :body-style="{ padding: '10px 15px' }" shadow="hover" @click="jumpAlways(item)">
-          <el-avatar :size="45" :src="item.src" />
+        <el-card class="card" :body-style="{ padding: '10px 15px' }" shadow="hover" @click="jump(item)">
+          <el-avatar :size="45" :src="item.icoSrc" />
           <div class="name">
             <span>{{ item.name }}</span>
           </div>
           <div class="count">
             <span><el-icon style="top: 3px" :size="15">
                 <Link />
-              </el-icon>次数：{{ item.count }}</span>
+              </el-icon>次数：{{ item.score }}</span>
           </div>
           <el-divider>
             <el-icon><star-filled /></el-icon>
           </el-divider>
           <el-tag class="ml-2" size="large" type="success">{{ item.tag }}</el-tag>
           <div style="top: -30px;  font-size: 12px;color: #999;">
-            <span>{{ item.value }}</span>
+            <span>{{ item.description }}</span>
           </div>
         </el-card>
       </el-col>
     </el-row>
-
   </el-card>
+
   <el-card class="box-card" v-for="(list, index) in urlList" :key="list">
     <template #header>
       <div class="card-header">
@@ -37,8 +37,8 @@
     </template>
     <el-row>
       <el-col v-for="(item) in urlList[index].list" :key="item" :span="4">
-        <el-card class="card" :body-style="{ padding: '10px 15px' }" shadow="hover" @click="jump(item, urlList[index].tag)">
-          <el-avatar :size="45" :src="item.src" />
+        <el-card class="card" :body-style="{ padding: '10px 15px' }" shadow="hover" @click="jump(item)">
+          <el-avatar :size="45" :src="item.icoSrc" />
           <div class="name">
             <span>{{ item.name }}</span>
           </div>
@@ -46,7 +46,7 @@
             <el-icon><star-filled /></el-icon>
           </el-divider>
           <div style="top: -40px;  font-size: 12px;color: #999;">
-            <span>{{ item.value }}</span>
+            <span>{{ item.description }}</span>
           </div>
         </el-card>
       </el-col>
@@ -55,56 +55,49 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, toRefs ,onMounted } from 'vue'
-import urlList from "../../js/navUrlList";
+import { reactive, inject  } from 'vue'
+import { queryNavigationUrl, updateNavigationCount, queryCommon } from "../../http/data/index.js"
 
-type urlType = {
-  src: string;
-  name: string;
-  value: string;
-  url: string;
-  count: number;
-  tag: string;
-}
-const alwaysList = reactive<Array<urlType>>([])
+const alwaysList:any = reactive([]);
 
-const jumpAlways = (item: urlType) => {
+queryCommon().then( (res: any) => {
+  if (res.length > 0) {
+    res.forEach((item:any) => {
+      alwaysList.push(item);
+    });
+  }
+}).catch( (err: any) => {
+    console.log(err)
+})
+
+//刷新页面
+const reload: any = inject('reload')
+
+const jump = (item: any) => {
   const flag: boolean = false;
   if (alwaysList.includes(item)) {
-    //访问次数+1
     !flag;
-    alwaysList[alwaysList.indexOf(item)].count++;
   }
-  alwaysList.sort((a, b) => b.count - a.count);
-  //判断是否已经打开过
-  if(flag) {
-    window.open('javascript:;', state.ip+item.name);
-  }else{
-    window.open(item.url, state.ip+item.name);
-  }
-}
-
-const jump = (item: urlType, tag: string) => {
-  const flag: boolean = false;
-  if (alwaysList.includes(item)) {
-    //访问次数+1
-    !flag;
-    alwaysList[alwaysList.indexOf(item)].count++; 
-  } else {
-    item.tag = tag;
-    alwaysList.push(item);
-  }
-  alwaysList.sort((a, b) => b.count - a.count);
-  
+  //更新缓存中点击次数
+  updateNavigationCount(item).then();
+  reload();
   if(flag) {
     window.open('javascript:;', item.name);
   }else{
     window.open(item.url, item.name);
   }
+
 }
 
-const state = reactive({
-  ip:'',
+const urlList:any = reactive([]);
+queryNavigationUrl().then( (res: any) => {
+  if (res.length > 0) {
+    res.forEach((item:any) => {
+      urlList.push(item);
+    });
+  }
+}).catch( (err: any) => {
+    console.log(err)
 })
 
 </script>

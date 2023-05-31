@@ -35,7 +35,7 @@
         <el-menu-item index="6" @click="openBlog()">
             <el-icon :size="20">
                 <Collection />
-            </el-icon>创作
+            </el-icon>知识库
         </el-menu-item>
         <el-menu-item index="7" @click="toggleDark()">
             <img src="../../assets/sun.png" class="themeClass" />

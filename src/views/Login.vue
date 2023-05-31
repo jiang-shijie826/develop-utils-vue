@@ -42,7 +42,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import "../style/login/style.css";
 import { ElMessage } from "element-plus";
 import { ref, reactive } from 'vue'
@@ -72,7 +72,7 @@ const Login = (userInput: userType): void => {
     } else if (userInput.account == '') {
         ElMessage({
             showClose: true,
-            message: "请输入用户名！"
+            message: "请输入帐号！"
         });
     } else if (userInput.password == '') {
         ElMessage({
