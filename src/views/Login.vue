@@ -103,4 +103,9 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 .input-with-select .el-input-group__prepend {
     background-color: var(--el-fill-color-blank);
 }
+
+.content {
+    width: 200%;
+    position: relative;
+}
 </style>
