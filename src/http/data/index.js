@@ -46,4 +46,12 @@ export const queryCommon=(count)=>{
   })
 }
 
-export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, updateNavigationCount, queryCommon}
+export const queryBing=()=>{
+  return axios({
+    url:'/datePicker/queryBing',
+    method:'get',
+  })
+}
+
+export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
+  updateNavigationCount, queryCommon, queryBing}
