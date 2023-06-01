@@ -83,6 +83,6 @@ export default {
   float: right;
   position: relative;
   margin-top: -45px;
-  margin-right: 40px;
+  margin-right: 35px;
 }
 </style>

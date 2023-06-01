@@ -1,5 +1,5 @@
 <template>
-    <el-carousel height="620px" pause-on-hover="true" class="home">
+    <el-carousel height="650px" pause-on-hover="true" class="home">
         <el-carousel-item v-for="item in imgList" :key="item" autoplay="false">
             <img :src="item.picSrc" />
         </el-carousel-item>
@@ -30,17 +30,16 @@ queryCarouselPicture(count.value).then( (res: any) => {
 </script>
 
 <style scoped>
-.img {
-    width: 200%;
-}
 
 .el-carousel__item img {
     display: cover;
     color: #475669;
-    height: 150%;
+    height: 120%;
+    width: 100%;
 }
 
 .home {
     width: 200%;
+    height: 150%;
 }
 </style>
