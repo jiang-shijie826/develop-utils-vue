@@ -1,5 +1,26 @@
 <template>
-    <div class="container" :style="{background: url}">
+    <!-- <el-col class="col1" :span="8">
+        <img class="img"
+            src="https://cn.bing.com/th?id=OHR.ReefAwareness_ZH-CN8840949729_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp" />
+    </el-col>
+    <el-col class="col3" :span="4">
+        <el-popover :visible="visible" placement="top" :width="240">
+            <div class="demo-date-picker">
+                <div class="block">
+                    <el-date-picker v-model="picker" type="date" placeholder="选择日期" :shortcuts="shortcuts" :size="size"
+                        format="YYYY/MM/DD hh:mm:ss" value-format="x" />
+                </div>
+            </div>
+            <div style="text-align: right; margin-top: -15px;">
+                <el-button size="small" text @click="visible = false">取消</el-button>
+                <el-button size="small" type="primary" @click="getDate()">确定</el-button>
+            </div>
+            <template #reference>
+                <el-button type="primary" class="ml-2" @click="visible = true">设置倒计时</el-button>
+            </template>
+        </el-popover>
+    </el-col> -->
+    <div class="container" :style="{ background: url }">
         <el-row>
             <el-col>
                 <h2 class="h_two">距离XX倒计时:</h2>
@@ -28,7 +49,7 @@ import { ref, reactive } from 'vue'
 import dayjs, { UnitTypeLong } from 'dayjs'
 import { Calendar } from '@element-plus/icons-vue'
 import saying_list from '../../js/navUrlList'
-import {queryBing} from '../../http/data/index.js'
+import { queryBing } from '../../http/data/index.js'
 
 
 const size = ref<'default' | 'large' | 'small'>('default')
@@ -67,9 +88,9 @@ const shortcuts = [
 
 // 动态绑定背景
 const url = ref('');
-queryBing().then( (res: any) => {
+queryBing().then((res: any) => {
     url.value = `url("`.concat(res.url, `") 0 / cover fixed`);
-    console.log( url.value );
+    console.log(url.value);
 })
 </script>
   
@@ -165,7 +186,7 @@ queryBing().then( (res: any) => {
     margin-left: 50px;
     font-family: "lazy";
     font-weight: bold;
-     color: #ffffff;
+    color: #ffffff;
 }
 
 .h_three {
