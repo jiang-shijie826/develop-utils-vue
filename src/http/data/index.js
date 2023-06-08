@@ -53,5 +53,13 @@ export const queryBing=()=>{
   })
 }
 
+export const userLogin=(data)=>{
+  return axios({
+    url:'/user/login',
+    method:'post',
+    data
+  })
+}
+
 export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
-  updateNavigationCount, queryCommon, queryBing}
+  updateNavigationCount, queryCommon, queryBing, userLogin}

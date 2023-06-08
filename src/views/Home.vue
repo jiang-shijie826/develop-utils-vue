@@ -40,6 +40,6 @@ queryCarouselPicture(count.value).then( (res: any) => {
 
 .home {
     width: 200%;
-    height: 150%;
+    /* height: 150%; */
 }
 </style>

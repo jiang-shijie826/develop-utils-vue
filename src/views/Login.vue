@@ -48,44 +48,37 @@ import { ElMessage } from "element-plus";
 import { ref, reactive } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import CountrySelect from '../components/CountrySelect.vue'
+import { userLogin } from "../http/data/index.js"
+import {useRouter} from 'vue-router'
+
 
 const input1 = ref('')
 
 //默认国家地区号
 const value = ref('86')
-type userType = {
-    account: string;
-    password: string;
-}
 
-const user = reactive<userType>({
+const user = reactive({
     account: '',
     password: ''
 })
 
-const Login = (userInput: userType): void => {
-    if (userInput.account == 'admin' && userInput.password == '123') {
-        ElMessage({
-            showClose: true,
-            message: "登录成功"
-        });
-    } else if (userInput.account == '') {
-        ElMessage({
-            showClose: true,
-            message: "请输入帐号！"
-        });
-    } else if (userInput.password == '') {
-        ElMessage({
-            showClose: true,
-            message: "请输入密码！"
-        });
-    } else {
-        ElMessage({
-            showClose: false,
-            message: "用户名或密码错误！"
-        });
-    }
-
+const router=useRouter()
+const Login = (user: any): void => {
+    userLogin(user).then((res: any) => {
+        if (res.status == 1) {
+            ElMessage({
+                showClose: true,
+                message: res.msg
+            });
+            //跳转页面
+            router.push({ name: 'Home', params: { userId: res.data.id }})
+        } else if (res.status == -1) {
+            ElMessage({
+                showClose: true,
+                message: res.msg
+            });
+        }
+    })
 };
 //标签页
 const activeName = ref('first')
@@ -105,7 +98,6 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 }
 
 .content {
-    width: 200%;
-    position: relative;
+    width: 180%;
 }
 </style>

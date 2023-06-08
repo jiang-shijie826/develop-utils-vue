@@ -119,7 +119,7 @@ queryBing().then((res: any) => {
 .el-row {
     width: 200%;
     top: 80px;
-
+    left: 50px;
 }
 
 .demo-date-picker {
@@ -156,7 +156,7 @@ queryBing().then((res: any) => {
 
 .col2 {
     font-size: large;
-    margin-left: 50px;
+    left: 50px;
     top: 230px;
     color: #ffffff;
 }
