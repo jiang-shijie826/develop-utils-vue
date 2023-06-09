@@ -30,9 +30,13 @@
             <el-menu-item index="5-1" @click="router.push('SqlBeauty')">SQL自动拼接</el-menu-item>
             <el-menu-item index="5-2" @click="router.push('Calendar')">日历</el-menu-item>
             <el-menu-item index="5-3" @click="router.push('DatePicker')">倒计时</el-menu-item>
-            <el-menu-item index="5-4" @click="router.push('DatePicker')">ChatGPT</el-menu-item>
+            <el-menu-item index="5-4" @click="router.push('ToDoList')">记事本</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="6" @click="openBlog()">
+        <el-menu-item index="6" @click="router.push('ChatGPT')">
+            <el-icon :size="20">
+                <Brush />
+            </el-icon>聊天室</el-menu-item>
+        <el-menu-item index="7" @click="openBlog()">
             <el-icon :size="20">
                 <Collection />
             </el-icon>知识库

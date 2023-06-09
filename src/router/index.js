@@ -41,6 +41,16 @@ const router = createRouter({
       path: '/Navigation',
       name: 'Navigation',
       component: () => import('../views/utils/Navigation.vue')
+    },
+    {
+      path: '/ChatGPT',
+      name: 'ChatGPT',
+      component: () => import('../views/utils/ChatGPT.vue')
+    },
+    {
+      path: '/ToDoList',
+      name: 'ToDoList',
+      component: () => import('../views/utils/ToDoList.vue')
     }
   ]
 })

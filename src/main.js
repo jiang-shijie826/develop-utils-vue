@@ -12,8 +12,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import weather from 'vue3-mini-weather'
 import VDistpicker from 'v-distpicker'
 import axios from "axios";
-
-
+import directives from "./common/directives";
 
 const app = createApp(App)
 
@@ -21,6 +20,7 @@ app.use(createPinia())
 app.use(Router)
 app.use(ElementPlus)
 app.component('v-distpicker', VDistpicker)
+app.use(directives);
 
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
