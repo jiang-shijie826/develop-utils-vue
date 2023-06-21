@@ -35,7 +35,7 @@
         <el-menu-item index="6" @click="router.push('ChatGPT')">
             <el-icon :size="20">
                 <Brush />
-            </el-icon>聊天室</el-menu-item>
+            </el-icon>地图</el-menu-item>
         <el-menu-item index="7" @click="openBlog()">
             <el-icon :size="20">
                 <Collection />
