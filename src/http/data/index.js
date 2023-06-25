@@ -61,5 +61,21 @@ export const userLogin=(data)=>{
   })
 }
 
+export const getCode=(username)=>{
+  return axios({
+    url:'/mall/rabbitmq/users/code?username='+username,
+    method:'get',
+    username
+  })
+}
+
+export const registerUser=(data)=>{
+  return axios({
+    url:'/user/registerUser',
+    method:'post',
+    data
+  })
+}
+
 export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
-  updateNavigationCount, queryCommon, queryBing, userLogin}
+  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser}

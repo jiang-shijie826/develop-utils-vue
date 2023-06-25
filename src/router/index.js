@@ -51,6 +51,11 @@ const router = createRouter({
       path: '/ToDoList',
       name: 'ToDoList',
       component: () => import('../views/utils/ToDoList.vue')
+    },
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: () => import('../components/layout/Admin.vue')
     }
   ]
 })
