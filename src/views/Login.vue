@@ -74,7 +74,7 @@ const Login = (user: any): void => {
                 message: res.msg
             });
             //跳转页面
-            router.push({ name: 'Admin', params: { account: user.account }})
+            router.push({ name: 'Admin', params: { account: user.account }});
         } else if (res.status == -1) {
             ElMessage({
                 showClose: true,

@@ -10,7 +10,7 @@ const router = createRouter({
     {
       path: '/home',
       name: 'Home',
-      component: () => import('../views/Home.vue')
+      component: () => import('../views/Home.vue'),
     },
     {
       path: '/SqlBeauty',
@@ -56,6 +56,47 @@ const router = createRouter({
       path: '/Admin',
       name: 'Admin',
       component: () => import('../components/layout/Admin.vue')
+    },
+    {
+      path: '/User',
+      name: 'User',
+      component: () => import('../views/admin/User.vue')
+    }
+    ,
+    {
+      path: '/Carousel',
+      name: 'Carousel',
+      component: () => import('../views/admin/Carousel.vue')
+    }
+    ,
+    {
+      path: '/Compass',
+      name: 'Compass',
+      component: () => import('../views/admin/Compass.vue')
+    }
+    ,
+    {
+      path: '/SearchIco',
+      name: 'SearchIco',
+      component: () => import('../views/admin/SearchIco.vue')
+    }
+    ,
+    {
+      path: '/Compass',
+      name: 'Compass',
+      component: () => import('../views/admin/Compass.vue')
+    }
+    ,
+    {
+      path: '/Countdown',
+      name: 'Countdown',
+      component: () => import('../views/admin/Countdown.vue')
+    }
+    ,
+    {
+      path: '/Notepad',
+      name: 'Notepad',
+      component: () => import('../views/admin/Notepad.vue')
     }
   ]
 })
