@@ -66,7 +66,7 @@ import { useRouter } from "vue-router";
 
 
 const handleOpen = (key: string, keyPath: string[]) => {
-    console.log("user", key, keyPath)
+    
 }
 const handleClose = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)

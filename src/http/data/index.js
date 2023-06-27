@@ -77,5 +77,12 @@ export const registerUser=(data)=>{
   })
 }
 
+export const queryAllUser=()=>{
+  return axios({
+    url:'/user/query',
+    method:'get',
+  })
+}
+
 export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
-  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser}
+  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser,queryAllUser}
