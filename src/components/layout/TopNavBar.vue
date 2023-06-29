@@ -32,10 +32,13 @@
             <el-menu-item index="5-3" @click="router.push('DatePicker')">倒计时</el-menu-item>
             <el-menu-item index="5-4" @click="router.push('ToDoList')">记事本</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="6" @click="router.push('ChatGPT')">
+        <el-sub-menu index="6">
+            <template #title>
             <el-icon :size="20">
                 <Brush />
-            </el-icon>地图</el-menu-item>
+            </el-icon>照片墙</template>
+            <el-menu-item index="6-1" @click="router.push('PhotoWall')">IDol</el-menu-item>
+        </el-sub-menu>
         <el-menu-item index="7" @click="openBlog()">
             <el-icon :size="20">
                 <Collection />

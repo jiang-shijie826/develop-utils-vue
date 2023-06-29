@@ -98,6 +98,12 @@ const router = createRouter({
       name: 'Notepad',
       component: () => import('../views/admin/Notepad.vue')
     }
+    ,
+    {
+      path: '/PhotoWall',
+      name: 'PhotoWall',
+      component: () => import('../views/utils/PhotoWall.vue')
+    }
   ]
 })
 
