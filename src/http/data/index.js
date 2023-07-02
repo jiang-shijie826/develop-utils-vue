@@ -84,5 +84,13 @@ export const queryAllUser=()=>{
   })
 }
 
+export const queryPhotoWallByTag=(tagId)=>{
+  return axios({
+    url:'/wall/queryByTag/' + tagId,
+    method:'get',
+    tagId
+  })
+}
+
 export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
-  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser,queryAllUser}
+  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser,queryAllUser,queryPhotoWallByTag}

@@ -154,7 +154,8 @@ const Register = (user: any): void => {
     background-color: var(--el-fill-color-blank);
 }
 
-.content {
+.content {  
+    position: relative;
     width: 188%;
 }
 </style>
