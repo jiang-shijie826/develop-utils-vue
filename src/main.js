@@ -17,17 +17,17 @@ import directives from "./common/directives";
 // 引入vue-amap
 import VueAMap, {initAMapApiLoader} from '@vuemap/vue-amap';
 import '@vuemap/vue-amap/dist/style.css';
+import VuePictureSwipe from 'vue3-picture-swipe';
 
 
 const app = createApp(App)
-
 app.use(createPinia())
 app.use(Router)
 app.use(ElementPlus)
 app.component('v-distpicker', VDistpicker)
 app.use(directives);
 app.use(VueAMap);
-
+app.use(VuePictureSwipe);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
