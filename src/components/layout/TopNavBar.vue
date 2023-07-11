@@ -36,8 +36,9 @@
             <template #title>
             <el-icon :size="20">
                 <Brush />
-            </el-icon>照片墙</template>
-            <el-menu-item index="6-1" @click="router.push('PhotoWall')">IDol</el-menu-item>
+            </el-icon>时光</template>
+            <el-menu-item index="6-1" @click="router.push('PhotoWall')">照片墙</el-menu-item>
+            <el-menu-item index="6-2" @click="router.push('PhotoWall')">留言墙</el-menu-item>
         </el-sub-menu>
         <el-menu-item index="7" @click="openBlog()">
             <el-icon :size="20">
