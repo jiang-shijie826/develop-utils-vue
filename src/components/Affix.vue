@@ -1,28 +1,12 @@
 <script lang="ts" setup>
 import { ElMessage } from "element-plus";
 import { CollectionTag } from '@element-plus/icons-vue'
+import { onMounted, reactive } from "vue";
+import { queryAllTag } from "../http/data/index.js"
+
 
 // 使用defineEmits创建名称，接受一个数组
 const emit = defineEmits(['tagChild'])
-
-const tagList = [
-    {
-        index: 1,
-        name: "全部"
-    },
-    {
-        index: 2,
-        name: "偶像"
-    },
-    {
-        index: 3,
-        name: "日常"
-    },
-    {
-        index: 4,
-        name: "游戏"
-    },
-]
 
 const handleCommand = (command: string | number | object) => {
     //传递给父组件
@@ -30,6 +14,23 @@ const handleCommand = (command: string | number | object) => {
         tag: command,
     })
 }
+
+
+const tagList: any = reactive([]);
+
+onMounted(() => {
+    queryAllTag().then((res: any) => {
+    if (res.data.length > 0) {
+      res.data.forEach((item: any) => {
+        console.log(item);
+        tagList.push(item);
+      });
+    }
+  }).catch((err: any) => {
+    console.log(err)
+  });
+})
+
 </script>
 <template>
     <div class="affix-container">
@@ -37,7 +38,7 @@ const handleCommand = (command: string | number | object) => {
             <el-button type="warning" size="large" :icon="CollectionTag" circle />
             <template #dropdown>
                 <el-dropdown-menu v-for="tag in tagList">
-                    <el-dropdown-item :command=tag.index>{{ tag.name }}</el-dropdown-item>
+                    <el-dropdown-item :command=tag.sort>{{ tag.tagName }}</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
@@ -49,6 +50,7 @@ const handleCommand = (command: string | number | object) => {
     position: fixed;
     top: 92%;
     right: 1%;
+    z-index: 999;
 }
 
 .el-dropdown {

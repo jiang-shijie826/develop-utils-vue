@@ -92,5 +92,17 @@ export const queryPhotoWallByTag=(tagId)=>{
   })
 }
 
-export default {sqlRequest, queryCarouselPicture, queryNavigationUrl, 
-  updateNavigationCount, queryCommon, queryBing, userLogin, getCode,registerUser,queryAllUser,queryPhotoWallByTag}
+export const queryAllTag=()=>{
+  return axios({
+    url:'/wallTag/queryAllTag/',
+    method:'get'
+  })
+}
+
+export default {
+  sqlRequest, queryCarouselPicture, queryNavigationUrl, 
+  updateNavigationCount, queryCommon, queryBing, userLogin, 
+  getCode,registerUser,queryAllUser,queryPhotoWallByTag,
+  queryAllTag
+
+}
