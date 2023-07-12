@@ -28,7 +28,6 @@ provide('reload', () => {
 
 <style>
 nav {
-  text-align: center;
   width: 200%;
 }
 </style>

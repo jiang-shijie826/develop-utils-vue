@@ -282,7 +282,7 @@ const changeMenu = (event: string): void => {
     width: 56%;
 }
 .m-2{
-    left: -35px;
+    left: -15px;
     width: 40%;
 }
 </style>

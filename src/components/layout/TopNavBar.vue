@@ -1,9 +1,7 @@
 <template>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
-        <el-menu-item index="0" class="img">
+        <el-menu-item index="1" class="img">
             <img src="../../assets/favicon.ico" class="icoClass" @click="router.push('Home')" />
-        </el-menu-item>
-        <el-menu-item index="1">
         </el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="2" @click="router.push('Home')">
@@ -32,26 +30,24 @@
             <el-menu-item index="5-3" @click="router.push('DatePicker')">倒计时</el-menu-item>
             <el-menu-item index="5-4" @click="router.push('ToDoList')">记事本</el-menu-item>
         </el-sub-menu>
-        <el-sub-menu index="6">
-            <template #title>
+        <el-menu-item index="6" @click="router.push('PhotoWall')">
             <el-icon :size="20">
                 <Brush />
-            </el-icon>时光</template>
-            <el-menu-item index="6-1" @click="router.push('PhotoWall')">照片墙</el-menu-item>
-            <el-menu-item index="6-2" @click="router.push('PhotoWall')">留言墙</el-menu-item>
-        </el-sub-menu>
+            </el-icon>照片墙
+        </el-menu-item>
         <el-menu-item index="7" @click="openBlog()">
             <el-icon :size="20">
                 <Collection />
             </el-icon>知识库
         </el-menu-item>
-        <el-menu-item index="7" @click="toggleDark()">
+        <el-menu-item index="8" @click="toggleDark()">
             <img src="../../assets/sun.png" class="themeClass" />
         </el-menu-item>
-        <el-menu-item index="8" @click="router.push('Login')">
+        <el-menu-item index="9" @click="router.push('Login')">
             <img src="../../assets/center.png" class="centerClass"  />
         </el-menu-item>
     </el-menu>
+    <div class="h-6" />
 </template>
   
 <script lang="ts" setup>
@@ -85,7 +81,9 @@ const openBlog = (): void => {
 .flex-grow {
     flex-grow: 1;
 }
-
+.img{
+    top: 2px;
+}
 .icoClass {
     height: 45px;
 }
