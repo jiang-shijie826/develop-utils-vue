@@ -22,16 +22,19 @@ const add = (): void => {
     return;
   };
 
-  sqlRequest(data).then(res => {
-    data.returnSql = res.returnSql;
-    console.log("sql", data.returnSql);
-    //判断是否显示结果框
-    if (data.returnSql != null) {
-      data.isShow = true
-      //复制替换过的sql到剪贴板
-      touchCopy()
+  sqlRequest(data).then((res: any) => {
+    if (res.status === -1) {
+      ElMessage.error(res.msg);
+    } else {
+      data.returnSql = res.data.returnSql;
+      //判断是否显示结果框
+      if (data.returnSql != null) {
+        data.isShow = true
+        //复制替换过的sql到剪贴板
+        touchCopy()
+      }
     }
-  }).catch(err => {
+  }).catch((err: any) => {
     console.log(err)
   })
 };
@@ -44,7 +47,7 @@ function touchCopy() {
 }
 // 使用插件
 const { toClipboard } = useClipboard()
-const copy = async (msg) => {
+const copy = async (msg: any) => {
   try {
     // 复制
     await toClipboard(msg)
